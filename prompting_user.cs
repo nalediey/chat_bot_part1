@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Lifetime;
 
 namespace chat_bot_part1
 {//start of namespace 
@@ -30,7 +31,7 @@ namespace chat_bot_part1
         //display the welcome message with colour text 
         Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("**************************************************************");
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine(" [ Welcome to SAFEBUDDY CHATBOT ]");
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("**************************************************************");
@@ -53,10 +54,20 @@ namespace chat_bot_part1
 
             //ai chat message and name 
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write(" AI NAME: ");
-            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("Hello, Please enter your name: ");
-           
+            Console.Write(" SAFEBUDDY : ");
+            Console.Write("Enter your name: ");
+            string userName = Console.ReadLine();
+
+            if (storeValidation(userName))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Welcome " + userName + "!");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red; 
+                Console.WriteLine("Please try again.");
+            }
 
             //reset color
             Console.ResetColor();
@@ -66,9 +77,9 @@ namespace chat_bot_part1
             {//start of do while 
                 //user prompting with text colour 
 
-                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("USER:");
-                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
                 end_user = Console.ReadLine();
 
                 //reset the color
@@ -88,8 +99,8 @@ namespace chat_bot_part1
             {//start of if statement
                 //Return  success message if not empty 
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write(" AI NAME: ");
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(" SAFEBUDDY : ");
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Hey " + end_user);
 
                 //return true as they said 
@@ -100,9 +111,9 @@ namespace chat_bot_part1
 
                 //error message 
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write(" AI NAME: ");
+                Console.Write(" SAFEBUDDY : ");
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Please write your name: ");
+                Console.WriteLine(" Please write your name: ");
 
                 //return false as they said 
                 return false;
@@ -117,7 +128,8 @@ namespace chat_bot_part1
             do
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Hello " + end_user + "Please Enter Question Related to Cybersecurity . e.g.malware, phishing");
+                Console.WriteLine("Please Enter Question Related to Cybersecurity . e.g.malware, phishing");
+                Console.ResetColor();
 
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.Write(end_user + ": ");
@@ -127,6 +139,7 @@ namespace chat_bot_part1
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("QUESTION CAN NOT BE EMPTY. Please Try Again...");
+                    Console.ResetColor();   
                 }
 
                
@@ -134,7 +147,7 @@ namespace chat_bot_part1
             //once vaildated information is entered , continue
             Get_Response();
 
-            Console.ResetColor();
+           
         }
            
         public void Store_Responses()
@@ -150,7 +163,9 @@ namespace chat_bot_part1
             Bot_Response.Add("sypware","Sotware that secretly collects information about you without your permission.");
             Bot_Response.Add("ransomware","Malware that locks your files and demands payments to unlock them.");
             Bot_Response.Add("firewall","A security system that monitors and controls incoming and outgoing network traffic.");
-        }//end of store response class 
+
+           Console.ResetColor();
+         }//end of store response class 
 
 
         public void Ingoring_words()
@@ -212,18 +227,52 @@ namespace chat_bot_part1
                     {
                         //storing the response by the bot for the user 
                         Response_text += a.Value;
-                        Console.Write("Bot: ");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write("SAFEBUDDY : ");
                         Console.WriteLine(Response_text);
+                        Console.ResetColor();
                     }
                     else
                     {
-                        Console.Write("Bot: ");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write("SAFEBUDDY : ");
                         Console.WriteLine("Please enter a question related to cyber security");
+                        Console.ResetColor();   
                     } 
                 }//end of foreach for keywords 
 
             }//end of foreach for response 
+
+            Console.ResetColor();
         }//end of get response method 
+
+        public bool storeValidation(string name)
+        {
+
+            // Checking the length
+            if (name.Length < 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Name must be at least 1 character.");
+                Console.ResetColor();
+                return false;
+            }
+
+            // Checking if all characters are letters
+            foreach (char c in name)
+            {
+                if (!char.IsLetter(c))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Name must contain only letters.");
+                    Console.ResetColor();
+                    return false;
+                }
+            }
+
+            // If all checks pass
+            return true;
+        }
 
         public Boolean exitwords(String user_question)
         {
@@ -243,7 +292,9 @@ namespace chat_bot_part1
                 //checking if the user question consists of exit words 
                 if (user_question.Contains(exit))
                 {
+                    Console.ForegroundColor = ConsoleColor.Blue;    
                     Console.WriteLine("Goodbye, Thank you for using SafeBuddy bot . Hope to see you again.");
+                    Console.ResetColor();   
                     System.Environment.Exit(0);
                     check = true;
                 }
