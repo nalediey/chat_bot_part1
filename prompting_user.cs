@@ -30,11 +30,11 @@ namespace chat_bot_part1
 
         //display the welcome message with colour text 
         Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("**************************************************************");
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.WriteLine(" [ Welcome to SAFEBUDDY CHATBOT ]");
+            AddBotTypingEffect("**************************************************************", ConsoleColor.DarkGreen);
+          
+            AddBotTypingEffect("[ Welcome to SAFEBUDDY CHATBOT ]", ConsoleColor.Magenta);
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("**************************************************************");
+            AddBotTypingEffect("**************************************************************", ConsoleColor.DarkGreen);
             Console.ForegroundColor = ConsoleColor.DarkGreen;
 
             //calling my methods into my contractor, so that the code under the methods can be executed 
@@ -52,34 +52,14 @@ namespace chat_bot_part1
         public void prompting_name()
         {//start of ask_name method 
 
-            //ai chat message and name 
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write(" SAFEBUDDY : ");
-            Console.Write("Enter your name: ");
-            string userName = Console.ReadLine();
-
-            if (storeValidation(userName))
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Welcome " + userName + "!");
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red; 
-                Console.WriteLine("Please try again.");
-            }
-
-            //reset color
-            Console.ResetColor();
-
             //do while to re-prompt the user (do something while expecting something to happen)
             do
             {//start of do while 
-                //user prompting with text colour 
+             //user prompting with text colour 
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("USER:");
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                //ai chat message and name 
+                Console.ForegroundColor = ConsoleColor.Blue;
+                AddBotTypingEffect(" SAFEBUDDY : Enter your name: ", ConsoleColor.Blue);
                 end_user = Console.ReadLine();
 
                 //reset the color
@@ -91,47 +71,40 @@ namespace chat_bot_part1
         }//end of ask_name method
 
         //the boolean method to check if the user entered name
-        private Boolean isEmpty()
-        {//start of boolean method 
-
-            //if statement to check if username if empty or not
-            if (end_user != "")
+        private bool isEmpty()
+        {//start of isEmpty method
+            if (!string.IsNullOrWhiteSpace(end_user))
             {//start of if statement
-                //Return  success message if not empty 
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write(" SAFEBUDDY : ");
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Hey " + end_user);
-
-                //return true as they said 
-                return true;
+                if (storeValidation(end_user))
+                {//start of if statement
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write(" SAFEBUDDY : ");
+                   AddBotTypingEffect("Hey " + end_user, ConsoleColor.DarkBlue);
+                    return true;
+                   
+                }//end of if statement
+                Console.ResetColor();
             }//end of if statement
-            else
-            {//start of if else statement
 
-                //error message 
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write(" SAFEBUDDY : ");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(" Please write your name: ");
+            Console.ForegroundColor = ConsoleColor.Red;
 
-                //return false as they said 
-                return false;
-            }//end of if else statemnt
-
-        }//end of is empty boolean method 
+            Console.WriteLine(" Please write a valid name: ");
+            TriggerBeep();
+            return false;
+        }//end of isEmpty method
 
 
         public void ask_question()
         {//start of ask_question method 
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            AddBotTypingEffect("Please Enter Question Related to Cybersecurity . e.g.malware, phishing", ConsoleColor.Blue);
+            Console.ResetColor();
+
             do
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Please Enter Question Related to Cybersecurity . e.g.malware, phishing");
-                Console.ResetColor();
-
-                Console.ForegroundColor = ConsoleColor.Gray;
+               
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(end_user + ": ");
                 question = Console.ReadLine();
                 exitwords(question);
@@ -139,13 +112,18 @@ namespace chat_bot_part1
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("QUESTION CAN NOT BE EMPTY. Please Try Again...");
-                    Console.ResetColor();   
+                    TriggerBeep();
+                    Console.ResetColor();
                 }
+                else
+                {
+                    Get_Response();
+                }
+              
 
-               
-            } while (string.IsNullOrEmpty(question));
+            } while (true);
             //once vaildated information is entered , continue
-            Get_Response();
+          
 
            
         }
@@ -157,14 +135,24 @@ namespace chat_bot_part1
             //storing triggering words and the response 
             Bot_Response.Add("cybersecurity", "The practice of protecting computers, networks, and data from hackers,attacks, or unauthorized access.");
             Bot_Response.Add("virus","A type of walware that spreads from one computer to another and can damage files or systems.");
-            Bot_Response.Add("malware","Harmful software designed to amage or disrupt a comppter system.");
+            Bot_Response.Add("malware","Harmful software designed to amage or disrupt a computer system.");
             Bot_Response.Add("phishing","A scam where attackers trick you into giving personal information, like passwords through fake emails or websites.");
             Bot_Response.Add("cyberattack", "When someone tries to damage, steal, or gain access to your system or data without permission.");
             Bot_Response.Add("sypware","Sotware that secretly collects information about you without your permission.");
             Bot_Response.Add("ransomware","Malware that locks your files and demands payments to unlock them.");
             Bot_Response.Add("firewall","A security system that monitors and controls incoming and outgoing network traffic.");
+            Bot_Response.Add("encryption", "The process of converting information or data into a code to prevent unauthorized access.");
+            Bot_Response.Add("safe browsing", "Practices and tools that help protect you from online threats while browsing the internet.");
+            Bot_Response.Add("password safety", "Practices and tools that help protect your passwords and personal information.");
+            Bot_Response.Add("antivirus software", "Software designed to detect and remove malware from your computer.");
+            Bot_Response.Add("social engineering", "Manipulating people into revealing confidential information.");
+            Bot_Response.Add("ethical hacking", "The practice of intentionally probing systems for vulnerabilities to improve security.");
+            Bot_Response.Add("vulnerability", "A weakness in the system that attacks can exploit.");
+            Bot_Response.Add("social engineering", "Manipulating people into revealing confidential information.");
 
-           Console.ResetColor();
+
+
+            Console.ResetColor();
          }//end of store response class 
 
 
@@ -180,6 +168,17 @@ namespace chat_bot_part1
             Words_To_Ingore.Add("thank");
             Words_To_Ingore.Add("give");
             Words_To_Ingore.Add("what");
+            Words_To_Ingore.Add("what");
+            Words_To_Ingore.Add("what");
+            Words_To_Ingore.Add("what");
+            Words_To_Ingore.Add("what");
+            Words_To_Ingore.Add("what");
+            Words_To_Ingore.Add("what");
+            Words_To_Ingore.Add("what");
+            Words_To_Ingore.Add("what");
+            Words_To_Ingore.Add("what");
+            Words_To_Ingore.Add("what");
+
 
 
 
@@ -188,7 +187,8 @@ namespace chat_bot_part1
 
         public void Get_Response()
         {//start of get reponse method 
-
+            //adding a boolean
+            bool foundMatch = false;
             //store bot response 
             string Response_text = string.Empty;
 
@@ -229,20 +229,22 @@ namespace chat_bot_part1
                         Response_text += a.Value;
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.Write("SAFEBUDDY : ");
-                        Console.WriteLine(Response_text);
+                        AddBotTypingEffect(Response_text, ConsoleColor.Yellow);
+                        AddBotTypingEffect("SAFEBUDDY : Let me know if you'd like more assistance refining this further!\nOr please enter (stop/bye/exit/goodbye) to exit the application \n", ConsoleColor.Blue);
                         Console.ResetColor();
+                        foundMatch = true;
                     }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.Write("SAFEBUDDY : ");
-                        Console.WriteLine("Please enter a question related to cyber security");
-                        Console.ResetColor();   
-                    } 
+
+                    
                 }//end of foreach for keywords 
 
             }//end of foreach for response 
-
+            if (!foundMatch)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("SAFEBUDDY : ");
+                AddBotTypingEffect("Please enter a question related to cybersecurity.", ConsoleColor.Red);
+            }
             Console.ResetColor();
         }//end of get response method 
 
@@ -252,8 +254,7 @@ namespace chat_bot_part1
             // Checking the length
             if (name.Length < 1)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Name must be at least 1 character.");
+                AddBotTypingEffect("Name must be at least 1 character.", ConsoleColor.Red);
                 Console.ResetColor();
                 return false;
             }
@@ -263,8 +264,7 @@ namespace chat_bot_part1
             {
                 if (!char.IsLetter(c))
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Name must contain only letters.");
+                    AddBotTypingEffect("Name must contain only letters.", ConsoleColor.Red);
                     Console.ResetColor();
                     return false;
                 }
@@ -292,20 +292,54 @@ namespace chat_bot_part1
                 //checking if the user question consists of exit words 
                 if (user_question.Contains(exit))
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;    
-                    Console.WriteLine("Goodbye, Thank you for using SafeBuddy bot . Hope to see you again.");
+                    AddBotTypingEffect("Goodbye, Thank you for using SafeBuddy bot . Hope to see you again.", ConsoleColor.Blue);
                     Console.ResetColor();   
                     System.Environment.Exit(0);
                     check = true;
                 }
             }//end of foreach loop 
 
-            
-
             return check;
         }
 
 
+        /*
+         *created a method that will trigger a sound when user input is wrong
+        passed two parameters the first one is for the frequency, it controls the pitch of the sound
+        second parameter is the duration, it is for the time the sound will take
+        
+         */
+        public void TriggerBeep(int frequency = 500, int duration = 1000)
+        {
+            //used exception Handling
+            try
+            {
+                // This will play a beep with the specified frequency and duration
+                Console.Beep(frequency, duration);
+
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"An error occurred while playing the beep: {ex.Message}");
+            }
+        }
+
+        //created a method that changes the Bot typing effect, making it more user friendly
+        //passed the message,message color and the speed of the message as parameters
+        public void AddBotTypingEffect(string Bot_message, ConsoleColor text_color, int text_speed = 30)// this method parses a string
+        {
+            Console.ForegroundColor = text_color;
+            foreach (char messages in Bot_message)
+            {
+                Console.Write(messages);
+                System.Threading.Thread.Sleep(text_speed); // Adjust speed for effect
+            }
+            Console.WriteLine();
+            Console.ResetColor();
+        }
+
+
     }//end of public class
-    }//end of namespace
+}//end of namespace
 
