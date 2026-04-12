@@ -149,6 +149,13 @@ namespace chat_bot_part1
             Bot_Response.Add("ethical hacking", "The practice of intentionally probing systems for vulnerabilities to improve security.");
             Bot_Response.Add("vulnerability", "A weakness in the system that attacks can exploit.");
             Bot_Response.Add("social engineering", "Manipulating people into revealing confidential information.");
+            Bot_Response.Add("identity theft", "The act of stealing someone's personal information to commit fraud.");
+            Bot_Response.Add("malicious app", "A harmful application that can damage your device or steal information.");
+            Bot_Response.Add("digital footprint", "The trail of data you leave behind when using the internet.");
+            Bot_Response.Add("data breach", "An incident where sensitive, protected, or confidential data is accessed or disclosed without authorization.");
+            Bot_Response.Add("cyberbullying", "Using technology to harrass or harm others online.");
+            Bot_Response.Add("two-factor authentication", "Requires two steps to verify your identification for better security.");
+            Bot_Response.Add("VPN", "A virtual private network that helps protect your online privacy and security.");
 
 
 
@@ -168,18 +175,28 @@ namespace chat_bot_part1
             Words_To_Ingore.Add("thank");
             Words_To_Ingore.Add("give");
             Words_To_Ingore.Add("what");
-            Words_To_Ingore.Add("what");
-            Words_To_Ingore.Add("what");
-            Words_To_Ingore.Add("what");
-            Words_To_Ingore.Add("what");
-            Words_To_Ingore.Add("what");
-            Words_To_Ingore.Add("what");
-            Words_To_Ingore.Add("what");
-            Words_To_Ingore.Add("what");
-            Words_To_Ingore.Add("what");
-            Words_To_Ingore.Add("what");
-
-
+            Words_To_Ingore.Add("who");
+            Words_To_Ingore.Add("how");
+            Words_To_Ingore.Add("when");
+            Words_To_Ingore.Add("where");
+            Words_To_Ingore.Add("who");
+            Words_To_Ingore.Add("and");
+            Words_To_Ingore.Add("so");
+            Words_To_Ingore.Add("if");
+            Words_To_Ingore.Add("i");
+            Words_To_Ingore.Add("my");
+            Words_To_Ingore.Add("should");
+            Words_To_Ingore.Add("would");
+            Words_To_Ingore.Add("give");
+            Words_To_Ingore.Add("show");
+            Words_To_Ingore.Add("help");
+            Words_To_Ingore.Add("tell");
+            Words_To_Ingore.Add("can");
+            Words_To_Ingore.Add("it");
+            Words_To_Ingore.Add("because");
+            Words_To_Ingore.Add("but");
+            Words_To_Ingore.Add("how");
+            Words_To_Ingore.Add("was");
 
 
 
