@@ -142,19 +142,18 @@ namespace chat_bot_part1
             Bot_Response.Add("ransomware","Malware that locks your files and demands payments to unlock them.");
             Bot_Response.Add("firewall","A security system that monitors and controls incoming and outgoing network traffic.");
             Bot_Response.Add("encryption", "The process of converting information or data into a code to prevent unauthorized access.");
-            Bot_Response.Add("safe browsing", "Practices and tools that help protect you from online threats while browsing the internet.");
-            Bot_Response.Add("password safety", "Practices and tools that help protect your passwords and personal information.");
-            Bot_Response.Add("antivirus software", "Software designed to detect and remove malware from your computer.");
+            Bot_Response.Add("safebrowsing", "Practices and tools that help protect you from online threats while browsing the internet.");
+            Bot_Response.Add("passwordsafety", "Practices and tools that help protect your passwords and personal information.");
+            Bot_Response.Add("antivirussoftware", "Software designed to detect and remove malware from your computer.");
             Bot_Response.Add("social engineering", "Manipulating people into revealing confidential information.");
             Bot_Response.Add("ethical hacking", "The practice of intentionally probing systems for vulnerabilities to improve security.");
             Bot_Response.Add("vulnerability", "A weakness in the system that attacks can exploit.");
-            Bot_Response.Add("social engineering", "Manipulating people into revealing confidential information.");
             Bot_Response.Add("identity theft", "The act of stealing someone's personal information to commit fraud.");
             Bot_Response.Add("malicious app", "A harmful application that can damage your device or steal information.");
             Bot_Response.Add("digital footprint", "The trail of data you leave behind when using the internet.");
             Bot_Response.Add("data breach", "An incident where sensitive, protected, or confidential data is accessed or disclosed without authorization.");
             Bot_Response.Add("cyberbullying", "Using technology to harrass or harm others online.");
-            Bot_Response.Add("two-factor authentication", "Requires two steps to verify your identification for better security.");
+            Bot_Response.Add("two factor authentication", "Requires two steps to verify your identification for better security.");
             Bot_Response.Add("VPN", "A virtual private network that helps protect your online privacy and security.");
 
 
@@ -261,7 +260,7 @@ namespace chat_bot_part1
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write("SAFEBUDDY : ");
                 AddBotTypingEffect("Please enter a question related to cybersecurity.", ConsoleColor.Red);
-                TriggerBeep();  
+               
             }
             Console.ResetColor();
         }//end of get response method 
