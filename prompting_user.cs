@@ -261,6 +261,7 @@ namespace chat_bot_part1
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write("SAFEBUDDY : ");
                 AddBotTypingEffect("Please enter a question related to cybersecurity.", ConsoleColor.Red);
+                TriggerBeep();  
             }
             Console.ResetColor();
         }//end of get response method 
