@@ -1,3 +1,4 @@
+Befor the logo appears it plays my voice welcoming the user to the chatbot then the logo appears 
 <img width="1424" height="1045" alt="Screenshot 2026-04-13 184556" src="https://github.com/user-attachments/assets/58d22721-f9eb-4d0f-9158-02589218ffe6" />
 this is the logo of my cybersecurity chatbot
 <img width="1171" height="402" alt="Screenshot 2026-04-13 184647" src="https://github.com/user-attachments/assets/f6259a1e-5db2-402f-96cc-1361acbca531" />
